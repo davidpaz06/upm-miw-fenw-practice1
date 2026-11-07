@@ -1,6 +1,8 @@
 import { get } from "../api.js";
 import { score } from "../score.js";
 
+const MAX_ATTEMPTS = 10;
+
 export default async (app) => {
   const colors = await get("/game/colors");
   const bg = (c) => `style="background:${colors[c].name}"`;
@@ -33,9 +35,11 @@ export default async (app) => {
           "beforeend",
           `<li>${guess.map(peg).join("")} ${"⚫".repeat(black)}${"⚪".repeat(white)}</li>`,
         );
-      if (black === 4) {
+      const attempts = game.querySelector("#history").children.length;
+      if (black === 4 || attempts === MAX_ATTEMPTS) {
         e.target.disabled = true;
-        game.querySelector("#result").innerHTML = "¡Has ganado!";
+        game.querySelector("#result").innerHTML =
+          black === 4 ? "¡Has ganado!" : `Has perdido. Era: ${secret.map(peg).join("")}`;
       }
     };
   };
