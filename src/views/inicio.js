@@ -9,5 +9,5 @@ export default (app) => {
       <li>🟡 Color correcto en otra posición.</li>
       <li>Las fichas no indican a qué color corresponden.</li>
     </ul>
-    <a href="#jugar">Jugar</a>`;
+    <a class="cta" href="#jugar">Jugar</a>`;
 };

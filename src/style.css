@@ -1,20 +1,28 @@
+:root {
+  --bg: #504f4f;
+  --bar: #222;
+  --fg: #fff;
+  --ink: #222;
+}
+
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
-  background: #504f4f;
-  color: #fff;
+  background: var(--bg);
+  color: var(--fg);
 }
 
 .menu {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 0 1rem;
-  background: #222;
+  background: var(--bar);
 }
 
 .menu ul {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -23,22 +31,61 @@ body {
 .menu a {
   display: block;
   padding: 0.75rem 0.5rem;
-  color: #fff;
+  color: var(--fg);
   text-decoration: none;
 }
 
 .menu a[aria-current] {
   font-weight: bold;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--fg);
 }
 
 main {
+  max-width: 40rem;
+  margin: 0 auto;
   padding: 1rem;
+}
+
+a {
+  color: inherit;
 }
 
 label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 0.25rem;
+}
+
+button,
+.cta {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border: 0;
+  border-radius: 0.25rem;
+  background: var(--fg);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
 }
 
 .peg {
