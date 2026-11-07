@@ -11,7 +11,10 @@ const app = document.querySelector("#app");
 function render() {
   const name = location.hash.slice(1);
   const view = views[name] ? name : "inicio";
-  views[view](app);
+  app.textContent = "Cargando...";
+  Promise.resolve(views[view](app)).catch(() => {
+    app.textContent = "No se pudo conectar con el servidor.";
+  });
   document.querySelectorAll(".menu a").forEach((a) => {
     a.toggleAttribute("aria-current", a.hash === "#" + view);
   });
