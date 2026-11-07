@@ -14,7 +14,8 @@ export default async (app) => {
     game.innerHTML = `<p>Pulsa cada ficha para cambiar su color.</p>
       <div id="guess">${guess.map((c) => `<button class="peg" ${bg(c)}></button>`).join("")}</div>
       <button id="try">Probar</button>
-      <ol id="history"></ol>`;
+      <ol id="history"></ol>
+      <p id="result"></p>`;
 
     game.querySelector("#guess").onclick = (e) => {
       const i = [...e.currentTarget.children].indexOf(e.target);
@@ -24,7 +25,7 @@ export default async (app) => {
     };
 
     // Las pistas van ordenadas (negras primero) para no delatar posiciones.
-    game.querySelector("#try").onclick = () => {
+    game.querySelector("#try").onclick = (e) => {
       const { black, white } = score(secret, guess);
       game
         .querySelector("#history")
@@ -32,6 +33,10 @@ export default async (app) => {
           "beforeend",
           `<li>${guess.map(peg).join("")} ${"⚫".repeat(black)}${"⚪".repeat(white)}</li>`,
         );
+      if (black === 4) {
+        e.target.disabled = true;
+        game.querySelector("#result").innerHTML = "¡Has ganado!";
+      }
     };
   };
 };
