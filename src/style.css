@@ -1,6 +1,8 @@
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
+  background: #504f4f;
+  color: #fff;
 }
 
 .menu {

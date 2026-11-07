@@ -26,14 +26,14 @@ export default async (app) => {
       e.target.style.background = colors[guess[i]].name;
     };
 
-    // Las pistas van ordenadas (negras primero) para no delatar posiciones.
+    // Las pistas van ordenadas (verdes primero) para no delatar posiciones.
     game.querySelector("#try").onclick = (e) => {
       const { black, white } = score(secret, guess);
       game
         .querySelector("#history")
         .insertAdjacentHTML(
           "beforeend",
-          `<li>${guess.map(peg).join("")} ${"⚫".repeat(black)}${"⚪".repeat(white)}</li>`,
+          `<li>${guess.map(peg).join("")} ${"🟢".repeat(black)}${"🟡".repeat(white)}</li>`,
         );
       const attempts = game.querySelector("#history").children.length;
       if (black === 4 || attempts === MAX_ATTEMPTS) {
