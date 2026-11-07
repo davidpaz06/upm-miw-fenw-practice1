@@ -33,3 +33,13 @@ body {
 main {
   padding: 1rem;
 }
+
+.peg {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid #000;
+  border-radius: 50%;
+  vertical-align: middle;
+}
