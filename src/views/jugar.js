@@ -1,4 +1,5 @@
 import { get } from "../api.js";
+import { score } from "../score.js";
 
 export default async (app) => {
   const colors = await get("/game/colors");
@@ -11,13 +12,26 @@ export default async (app) => {
     const guess = [0, 0, 0, 0];
     const game = app.querySelector("#game");
     game.innerHTML = `<p>Pulsa cada ficha para cambiar su color.</p>
-      <div id="guess">${guess.map((c) => `<button class="peg" ${bg(c)}></button>`).join("")}</div>`;
+      <div id="guess">${guess.map((c) => `<button class="peg" ${bg(c)}></button>`).join("")}</div>
+      <button id="try">Probar</button>
+      <ol id="history"></ol>`;
 
     game.querySelector("#guess").onclick = (e) => {
       const i = [...e.currentTarget.children].indexOf(e.target);
       if (i < 0) return;
       guess[i] = (guess[i] + 1) % colors.length;
       e.target.style.background = colors[guess[i]].name;
+    };
+
+    // Las pistas van ordenadas (negras primero) para no delatar posiciones.
+    game.querySelector("#try").onclick = () => {
+      const { black, white } = score(secret, guess);
+      game
+        .querySelector("#history")
+        .insertAdjacentHTML(
+          "beforeend",
+          `<li>${guess.map(peg).join("")} ${"⚫".repeat(black)}${"⚪".repeat(white)}</li>`,
+        );
     };
   };
 };
