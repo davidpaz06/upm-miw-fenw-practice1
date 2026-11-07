@@ -6,7 +6,7 @@ const openFromDisk = {
   name: "open-from-disk",
   enforce: "post" as const,
   transformIndexHtml(html: string) {
-    return html.replace(/ type="module"/g, " defer").replace(/ crossorigin/g, "");
+    return html.replace(' type="module" crossorigin', " defer");
   },
 };
 
@@ -17,7 +17,6 @@ export default defineConfig({
   staged: {
     "*": "vp check --fix",
   },
-  fmt: {},
   lint: {
     jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
     rules: { "vite-plus/prefer-vite-plus-imports": "error" },

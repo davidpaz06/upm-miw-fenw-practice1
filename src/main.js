@@ -19,7 +19,7 @@ function render() {
   const view = views[name] ? name : "inicio";
   app.innerHTML = views[view]();
   document.querySelectorAll(".menu a").forEach((a) => {
-    a.toggleAttribute("aria-current", a.dataset.view === view);
+    a.toggleAttribute("aria-current", a.hash === "#" + view);
   });
 }
 
