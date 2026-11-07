@@ -26,7 +26,6 @@ export default async (app) => {
       e.target.style.background = colors[guess[i]].name;
     };
 
-    // Las pistas van ordenadas (verdes primero) para no delatar posiciones.
     $("#try").onclick = (e) => {
       const { black, white } = score(secret, guess);
       $("#history").innerHTML +=
