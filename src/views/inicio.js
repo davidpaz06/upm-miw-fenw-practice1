@@ -5,8 +5,8 @@ export default (app) => {
     <h2>Reglas</h2>
     <ul>
       <li>Los colores pueden repetirse.</li>
-      <li>Ficha negra: color correcto en la posición correcta.</li>
-      <li>Ficha blanca: color correcto en otra posición.</li>
+      <li>🟢 Color correcto en la posición correcta.</li>
+      <li>🟡 Color correcto en otra posición.</li>
       <li>Las fichas no indican a qué color corresponden.</li>
     </ul>
     <a href="#jugar">Jugar</a>`;
