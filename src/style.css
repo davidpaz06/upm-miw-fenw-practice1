@@ -110,3 +110,25 @@ td {
   border-radius: 50%;
   vertical-align: middle;
 }
+
+#guess {
+  margin: 1rem 0;
+}
+
+#guess .peg {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+#history li {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+#history .peg {
+  margin-right: 0.25rem;
+}
+
+#result {
+  font-weight: bold;
+}

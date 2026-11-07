@@ -14,7 +14,7 @@ export default async (app) => {
     const guess = [0, 0, 0, 0];
     const game = app.querySelector("#game");
     game.innerHTML = `<p>Pulsa cada ficha para cambiar su color.</p>
-      <div id="guess">${guess.map((c) => `<button class="peg" ${bg(c)}></button>`).join("")}</div>
+      <div id="guess">${guess.map((c) => `<button class="peg" aria-label="Cambiar color" ${bg(c)}></button>`).join("")}</div>
       <button id="try">Probar</button>
       <ol id="history"></ol>
       <p id="result"></p>`;
