@@ -11,10 +11,9 @@ export default (app) => {
     <p id="result"></p>`;
 
   const form = app.querySelector("form");
+  const { password, repeat } = form;
   form.oninput = () =>
-    form.repeat.setCustomValidity(
-      form.repeat.value === form.password.value ? "" : "Las contraseñas no coinciden",
-    );
+    repeat.setCustomValidity(repeat.value === password.value ? "" : "Las contraseñas no coinciden");
 
   // Sin proceso en esta práctica: el envío a la API llega en la segunda.
   form.onsubmit = (e) => {

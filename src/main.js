@@ -1,22 +1,17 @@
 import "./style.css";
-import inicio from "./views/inicio.js";
-import jugar from "./views/jugar.js";
-import records from "./views/records.js";
-import registro from "./views/registro.js";
-import login from "./views/login.js";
 
-const views = { inicio, jugar, records, registro, login };
+const views = import.meta.glob("./views/*.js", { eager: true, import: "default" });
 const app = document.querySelector("#app");
 
 function render() {
-  const name = location.hash.slice(1);
-  const view = views[name] ? name : "inicio";
+  const view = views[`./views/${location.hash.slice(1)}.js`];
+  if (!view) return location.replace("#inicio");
   app.textContent = "Cargando...";
-  Promise.resolve(views[view](app)).catch(() => {
+  Promise.resolve(view(app)).catch(() => {
     app.textContent = "No se pudo conectar con el servidor.";
   });
   document.querySelectorAll(".menu a").forEach((a) => {
-    a.toggleAttribute("aria-current", a.hash === "#" + view);
+    a.toggleAttribute("aria-current", a.hash === location.hash);
   });
 }
 
