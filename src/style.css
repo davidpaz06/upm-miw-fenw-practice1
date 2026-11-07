@@ -36,6 +36,11 @@ main {
   padding: 1rem;
 }
 
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
 .peg {
   display: inline-block;
   width: 2rem;
