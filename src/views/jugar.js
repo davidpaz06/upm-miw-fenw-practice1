@@ -8,7 +8,16 @@ export default async (app) => {
 
   app.querySelector("#start").onclick = () => {
     const secret = Array.from({ length: 4 }, () => Math.floor(Math.random() * colors.length));
+    const guess = [0, 0, 0, 0];
     const game = app.querySelector("#game");
-    game.innerHTML = `<p>Combinación generada (oculta).</p>`;
+    game.innerHTML = `<p>Pulsa cada ficha para cambiar su color.</p>
+      <div id="guess">${guess.map((c) => `<button class="peg" ${bg(c)}></button>`).join("")}</div>`;
+
+    game.querySelector("#guess").onclick = (e) => {
+      const i = [...e.currentTarget.children].indexOf(e.target);
+      if (i < 0) return;
+      guess[i] = (guess[i] + 1) % colors.length;
+      e.target.style.background = colors[guess[i]].name;
+    };
   };
 };
