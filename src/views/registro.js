@@ -10,8 +10,14 @@ export default (app) => {
     </form>
     <p id="result"></p>`;
 
+  const form = app.querySelector("form");
+  form.oninput = () =>
+    form.repeat.setCustomValidity(
+      form.repeat.value === form.password.value ? "" : "Las contraseñas no coinciden",
+    );
+
   // Sin proceso en esta práctica: el envío a la API llega en la segunda.
-  app.querySelector("form").onsubmit = (e) => {
+  form.onsubmit = (e) => {
     e.preventDefault();
     app.querySelector("#result").textContent = "Datos válidos.";
   };
